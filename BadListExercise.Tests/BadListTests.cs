@@ -15,6 +15,7 @@ namespace BadListExercise.Tests
 
         [Theory]
         [InlineData(3, 3, 1, 2,3,4,3,3)]
+        [InlineData(0, 25, 1, 2,3,4,3,3)]
         public void CountNumbersTest(int expectedcount, int noi, params int[] ints)
         {
             var bl = new BadList();
