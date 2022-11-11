@@ -153,17 +153,44 @@ namespace BadListExercise.Tests
         [InlineData(1, 0, 0)]
         [InlineData(0, 0, 1)]
         [InlineData(1, 0)]
-        public void Remove_RemoveOutsideRandomList_ExpectException(params int[] ints)
+        public void Remove_RemoveOutsideRandomListOffByOneAtEnd_ExpectException(params int[] ints)
+        {
+            var bl = ints.ToBadList();
+
+            var badindex = ints.Length + 1;
+            
+            Assert.Throws<IndexOutOfRangeException>(() => bl.Remove(badindex));
+        }
+        [Theory]
+        [InlineData(1, 0, 9, 0)]
+        [InlineData(0, 0, 0, 0)]
+        [InlineData(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10)]
+        [InlineData(1, 0, 0)]
+        [InlineData(0, 0, 1)]
+        [InlineData(1, 0)]
+        public void Remove_RemoveOutsideRandomListNegativeOne_ExpectException(params int[] ints)
         {
             var bl = ints.ToBadList();
 
             var badindex = ints.Length + 1;
 
-            Assert.Multiple(
-                //() => Assert.Throws<IndexOutOfRangeException>(() => bl.Remove(-1)),
-                () => Assert.Throws<IndexOutOfRangeException>(() => bl.Remove(badindex))
-                );
+            Assert.Throws<IndexOutOfRangeException>(() => bl.Remove(-1));
+        }
 
+        [Theory]
+        [InlineData(1, 0, 9, 0)]
+        [InlineData(0, 0, 0, 0)]
+        [InlineData(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10)]
+        [InlineData(1, 0, 0)]
+        [InlineData(0, 0, 1)]
+        [InlineData(1, 0)]
+        public void Remove_RemoveOutsideRandomListDirectlyAtLengthIndex_ExpectException_(params int[] ints)
+        {
+            var bl = ints.ToBadList();
+
+            var badindex = ints.Length;
+
+            Assert.Throws<IndexOutOfRangeException>(() => bl.Remove(badindex));
         }
     }
 }

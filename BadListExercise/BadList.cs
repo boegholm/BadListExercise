@@ -49,6 +49,8 @@ public class BadList
     public void Remove(int index)
     {
         Node n = GetNodeBefore(index);
+        if(n.Next == null)
+            throw new IndexOutOfRangeException(index.ToString());
         n.Next = n.Next.Next;
         Length--;
     }
@@ -73,6 +75,7 @@ public class BadList
     {
         if (index < 0)
             throw new IndexOutOfRangeException(index.ToString());
+
         try
         {
             Node current = Head;
