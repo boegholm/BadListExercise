@@ -1,6 +1,3 @@
-using Xunit;
-using BadListExercise;
-
 namespace BadListExercise.Tests
 {
 

@@ -80,8 +80,6 @@ public class BadList
             Node current = Head;
             while (index-- > 0)
                 current = current.Next;
-            //if(current == null)
-            //    throw new IndexOutOfRangeException(index.ToString());
             return current;
         }
         catch (NullReferenceException)
