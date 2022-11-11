@@ -86,14 +86,17 @@ namespace BadListExercise.Tests
         [InlineData(10, 10, 10, 10,10,10,10,10,10,10,10,10,10)]
         [InlineData(1, 0, 0)]
         [InlineData(0, 0, 1)]
-        [InlineData(0,1)]
+        [InlineData(1,0)]
         public void InsertAtTest(int n, int index, params int[] ints)
         {
             int expectedLength=ints.Length+1;
             var bl = ints.ToBadList();
             bl.InsertAt(index, n);
 
-            Assert.Multiple(()=>Assert.Equal(bl.Length))
+            Assert.Multiple(
+                () => Assert.Equal(expectedLength, bl.Length), // expect n incease by one
+                ()=> Assert.Equal(n, bl.Get(index))             // expect to find element at index
+                );
         }
     }
 }
