@@ -49,7 +49,7 @@ public class BadList
     public void Remove(int index)
     {
         Node n = GetNodeBefore(index);
-        if(n.Next == null)
+        if(n?.Next == null)
             throw new IndexOutOfRangeException(index.ToString());
         n.Next = n.Next.Next;
         Length--;
@@ -75,12 +75,13 @@ public class BadList
     {
         if (index < 0)
             throw new IndexOutOfRangeException(index.ToString());
-
         try
         {
             Node current = Head;
             while (index-- > 0)
                 current = current.Next;
+            //if(current == null)
+            //    throw new IndexOutOfRangeException(index.ToString());
             return current;
         }
         catch (NullReferenceException)
