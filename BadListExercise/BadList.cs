@@ -71,6 +71,8 @@ public class BadList
     }
     private Node GetNodeBefore(int index)
     {
+        if (index < 0)
+            throw new IndexOutOfRangeException(index.ToString());
         try
         {
             Node current = Head;
