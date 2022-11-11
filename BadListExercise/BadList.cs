@@ -55,7 +55,7 @@ public class BadList
 
     public bool IsEmpty
     {
-        get { return Head == null; }
+        get { return Head.Next == null; }
     }
 
     public void InsertAt(int index, int value)

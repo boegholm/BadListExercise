@@ -87,7 +87,7 @@ namespace BadListExercise.Tests
         [InlineData(1, 0, 0)]
         [InlineData(0, 0, 1)]
         [InlineData(1,0)]
-        public void InsertAtTest(int n, int index, params int[] ints)
+        public void InsertAt_InsertNAtIndexInRandomList_ExpectLengthIncreaseAndCorrectValueFoundAtIndex(int n, int index, params int[] ints)
         {
             int expectedLength=ints.Length+1;
             var bl = ints.ToBadList();
@@ -96,7 +96,55 @@ namespace BadListExercise.Tests
             Assert.Multiple(
                 () => Assert.Equal(expectedLength, bl.Length), // expect n incease by one
                 ()=> Assert.Equal(n, bl.Get(index))             // expect to find element at index
+            );
+        }
+        [Theory]
+        [InlineData(1, 0, 9, 0)]
+        [InlineData(0, 0, 0, 0)]
+        [InlineData(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10)]
+        [InlineData(1, 0, 0)]
+        [InlineData(0, 0, 1)]
+        [InlineData(1, 0)]
+        [InlineData(0)]
+        public void InsertAt_InsertAtEnd_ExpectFoundAtEnd(int n, params int[] ints)
+        {
+            var bl = ints.ToBadList();
+
+            bl.InsertAt(bl.Length, n);
+
+            Assert.Equal(n, bl.Get(bl.Length - 1));
+        }
+
+
+        [Fact]
+        public void IsEmpty_NewList_StartsOutEmpty()
+        {
+            var bl = new BadList();
+
+            var result = bl.IsEmpty;
+
+            Assert.True(result);
+        }
+
+
+        [Theory]
+        [InlineData(1, 0, 9, 0)]
+        [InlineData(0, 0, 0, 0)]
+        [InlineData(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10)]
+        [InlineData(1, 0, 0)]
+        [InlineData(0, 0, 1)]
+        [InlineData(1, 0)]
+        public void InsertAt_InsertOutsideRandomList_ExpectException(params int[] ints)
+        {
+            var bl = ints.ToBadList();
+
+            var badindex = ints.Length + 1;
+
+            Assert.Multiple(
+                ()=> Assert.Throws<IndexOutOfRangeException>(() => bl.InsertAt(-1, 0)),
+                ()=> Assert.Throws<IndexOutOfRangeException>(() => bl.InsertAt(badindex, 0))
                 );
+
         }
     }
 }
