@@ -14,7 +14,7 @@ public class BadList
     public BadList()
     {
         Head = new Node(25);
-        Length = -1;
+        Length = 0;
     }
 
     public int Length { get; private set; }
