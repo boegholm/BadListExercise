@@ -30,7 +30,7 @@ public class BadList
         int count = 0;
         Node current = Head.Next;
         while ((current = current.Next) != null)
-            if (current.Data == count)
+            if (current.Data == number)
                 count++;
         return count;
     }

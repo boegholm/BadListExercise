@@ -13,10 +13,14 @@ namespace BadListExercise.Tests
         }
 
 
-        [Fact()]
-        public void CountNumbersTest()
+        [Theory]
+        [InlineData(3, 3, 1, 2,3,4,3,3)]
+        public void CountNumbersTest(int expectedcount, int noi, params int[] ints)
         {
-            Assert.True(false, "This test needs an implementation");
+            var bl = new BadList();
+            foreach (var v in ints)
+                bl.Add(v);
+            Assert.Equal(expectedcount, bl.CountNumbers(noi));
         }
 
         [Fact()]
